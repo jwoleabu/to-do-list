@@ -27,7 +27,7 @@ body{
 .header-container button{
     background-image: url("option.png");
     background-repeat: no-repeat;
-    background-size: 80%;
+    background-size: 24px;
     background-position: center;
     background-color: rgba(255, 255, 255, 0.15);
     border: none;
@@ -52,7 +52,9 @@ hr.task-header{
     margin-bottom: 20px;
     margin-inline-start: auto;
     margin-inline-end: auto;
-    border: 2px solid rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 2px;
+    border: none;
     width: 500px;
 }
 
@@ -100,6 +102,7 @@ hr.task-header{
     align-items: center;
     background-color: rgba(0,0,0,0.15);
     justify-content: center;
+    margin-bottom: 20px;
 
 }
 
@@ -150,4 +153,30 @@ hr.task-header{
     width: 80px;
     height: 20px;
     text-align: center;
+}
+
+li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    min-height: 60px;
+    padding: 22px 40px 22px 60px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border-left: 15px solid #ffffff;
+    transition: border-left-color 100ms;
+}
+
+li:hover{
+    border-left: 15px solid #d3d3d3;
+}
+
+ul, li{
+    vertical-align: middle;
+    list-style: none;
+    font-size: 16px;
+    user-select: none;
+    cursor: pointer;
+    width: 500px;
+
 }
