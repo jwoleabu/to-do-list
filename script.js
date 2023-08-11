@@ -2,8 +2,10 @@ const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const newTask = document.getElementById('new-task-button')
 const taskDescription = document.querySelector('.task-description');
+let listItems = listContainer.children;
 const body = document.body;
 let taskEditing = false;
+
 
 function addTask() {
     if (inputBox.value === ''){
@@ -13,6 +15,7 @@ function addTask() {
         taskDescription.style.display = 'none';
         let li = document.createElement("li");
         li.innerHTML = inputBox.value;
+        li.classList.add('draggable')
         listContainer.appendChild(li);
         let span = document.createElement('span');
         span.innerHTML = '\u00d7'
@@ -24,6 +27,9 @@ function addTask() {
         console.log('Task created')
 
     }
+    listItems = listContainer.children;
+    console.log(listItems)
+
 }
 
 function taskCancel() {
@@ -41,9 +47,9 @@ function taskCancel() {
         console.log('Task created')
 
     }
-    taskEditing = false;
     newTask.style.display = 'flex';
     taskDescription.style.display = 'none';
+    taskEditing = false;
 }
 
 body.addEventListener("keydown", function (e){
@@ -72,6 +78,16 @@ newTask.addEventListener("click", function (e){
     taskEditing = true;
     newTask.style.display = 'none'
 })
+
+// listItems.forEach(item =>{
+//     item.addEventListener("dragstart", () =>{
+//         item.classList.add('dragging');
+//     })
+//     item.addEventListener("dragend", () =>{
+//         item.classList.remove('dragging')
+//     })
+// })
+
 
 function saveData() {
     localStorage.setItem("data", listContainer.innerHTML);
