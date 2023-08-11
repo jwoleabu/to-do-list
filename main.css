@@ -111,16 +111,22 @@ hr.task-header{
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.new-task img{
-    opacity: 40%;
+.new-task::before{
+    content: '';
     width: 24px;
     height: 24px;
+    align-self: center;
+    background-image: url("plusicon.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 40%;
     margin-right: 5px;
 }
 
+
 .task-description{
     position: relative;
-    display: flex;
+    display: none;
     width: 500px;
     height: 180px;
     background-color: #ffffff;
@@ -131,45 +137,52 @@ hr.task-header{
     box-shadow: 0 5px 10px rgba(52, 52, 52, 0.4);
 }
 
+.new-task-container{
+    position: relative;
+}
+
+
 .desc-buttons{
+    display: flex;
     position: absolute;
     bottom: -40px;
     align-self: end;
 }
 
 .task-description button{
-    width: 40px;
-    /*padding: 5px 36px;*/
-    margin-right: 10px;
+    display: flex;
+    margin-right: 15px;
 }
 
 .cancel-button{
     border: none;
     background-color: #eaeaea;
     color: grey;
+    align-self: center;
+    transition: color 0.1s;
+}
+
+.cancel-button:hover{
+    color: #4d4d4d;
 }
 
 .add-button{
-    width: 80px;
-    height: 20px;
-    text-align: center;
-}
-
-li{
-    display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    min-height: 60px;
-    padding: 22px 40px 22px 60px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    border-left: 15px solid #ffffff;
-    transition: border-left-color 100ms;
+    text-align: center;
+    border: none;
+    background-color: #2c2c2c;
+    color: white;
+    border-radius: 5px;
+    height: 20px;
+    padding: 15px 30px 15px 30px;
+    transition: background-color 0.4s;
 }
 
-li:hover{
-    border-left: 15px solid #d3d3d3;
+.add-button:hover{
+    background-color: #111111;
+
 }
+
 
 ul, li{
     vertical-align: middle;
@@ -179,4 +192,68 @@ ul, li{
     cursor: pointer;
     width: 500px;
 
+}
+
+li{
+    position: relative;
+    display: flex;
+    color: #383838;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    min-height: 60px;
+    padding: 22px 40px 22px 50px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border-left: 15px solid #ffffff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    transition: border-left-color 100ms;
+}
+
+li:hover{
+    border-left: 15px solid #d3d3d3;
+}
+
+li::before{
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 10px;
+    background-image: url("unchecked.png");
+    background-size: cover;
+    background-position: center;
+}
+
+li.checked{
+    text-decoration: line-through;
+    color: #ababab;
+
+}
+
+li.dragging{
+    opacity: 55%;
+}
+
+li.checked::before{
+    background-image: url("checked.png");
+}
+
+li span{
+    color: #383838;
+    display: flex;
+    position: absolute;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
+    line-height: 35px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s;
+}
+
+li span:hover{
+    background-color: rgba(61, 61, 61, 0.07);
 }

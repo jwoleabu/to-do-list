@@ -15,25 +15,27 @@
 
 <div class="todoApp">
     <div class="task-list">
-        <ul>
-            <li> lorem ipsum </li>
-            <li> lorem ipsum </li>
-            <li> lorem ipsum </li>
+        <ul id="list-container">
+<!--            <li class="checked"> lorem ipsum </li>-->
+<!--            <li> lorem ipsum </li>-->
+<!--            <li class="dragging"> lorem ipsum </li>-->
         </ul>
         <div class="task-description">
         <input type="text" id="input-box" placeholder="What would you like to do?">
             <div class="desc-buttons">
-                <button class="cancel-button">Cancel</button>
-                <button class="add-button">Add</button>
+                <button class="cancel-button" onclick="taskCancel()">Cancel</button>
+                <button class="add-button" onclick="addTask()">Add</button>
             </div>
         </div>
-        <button class="new-task"><img src="plusicon.png">Add Task</button>
+        <div class="new-task-container">
+            <button class="new-task" id="new-task-button">Add Task</button>
+        </div>
     </div>
 </div>
 
 <div>
 
 </div>
-
+<script src="script.js"></script>
 </body>
 </html>
