@@ -69,7 +69,7 @@ hr.task-header{
 
 .task-description input{
     color: #383838;
-    width: 450px;
+    width: 350px;
     background-color: white;
     font-size: 22px;
     top: 20px;
@@ -77,10 +77,19 @@ hr.task-header{
     position: relative;
     height:50px ;
     border-width: 0;
+    transition: width 0.5s;
 }
 
 .task-description input:focus{
     outline: none;
+}
+
+.task-description.spawn{
+    width: 500px;
+}
+
+.task-description.spawn input{
+    width: 450px;
 }
 
 ::placeholder{
@@ -127,7 +136,7 @@ hr.task-header{
 .task-description{
     position: relative;
     display: none;
-    width: 500px;
+    width: 400px;
     height: 180px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -135,6 +144,7 @@ hr.task-header{
     margin-bottom: 20px;
     border-bottom: 50px solid #eaeaea;
     box-shadow: 0 5px 10px rgba(52, 52, 52, 0.4);
+    transition: width 0.5s;
 }
 
 .new-task-container{
@@ -202,12 +212,13 @@ li{
     font-size: 18px;
     margin-bottom: 10px;
     min-height: 60px;
-    padding: 22px 40px 22px 50px;
+    padding: 22px 50px 22px 50px;
     border-radius: 10px;
     background-color: #ffffff;
     border-left: 15px solid #ffffff;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
     overflow-wrap: break-word;
+    word-break: break-all;
     transition: border-left-color 100ms;
 }
 
@@ -233,8 +244,9 @@ li.checked{
 }
 
 li.dragging{
-    opacity: 55%;
+    opacity: 0;
 }
+
 
 li.checked::before{
     background-image: url("checked.png");
