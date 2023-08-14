@@ -116,7 +116,11 @@ function draggingFunction(e) {
     const siblings = Array.from(listContainer.querySelectorAll('li:not(.dragging)'));
 
     let nextSibling = siblings.find(sibling => {
-        return e.clientY <= sibling.getBoundingClientRect().top + sibling.offsetHeight / 1.5;
+        const rect = sibling.getBoundingClientRect();
+        const topHalf = rect.top + rect.height / 10;
+        const bottomHalf = rect.top + rect.height / 5;
+
+        return e.clientY <= topHalf || (e.clientY >= bottomHalf && e.clientY <= rect.bottom);
     });
 
     if (nextSibling) {
