@@ -25,7 +25,7 @@ body{
 }
 
 .header-container button{
-    background-image: url("option.png");
+    background-image: url("images/option.png");
     background-repeat: no-repeat;
     background-size: 24px;
     background-position: center;
@@ -67,7 +67,7 @@ hr.task-header{
 }
 
 
-.task-description input{
+#input-box{
     color: #383838;
     width: 350px;
     background-color: white;
@@ -80,6 +80,7 @@ hr.task-header{
     transition: width 0.5s;
 }
 
+
 .task-description input:focus{
     outline: none;
 }
@@ -88,7 +89,7 @@ hr.task-header{
     width: 500px;
 }
 
-.task-description.spawn input{
+.task-description.spawn #input-box{
     width: 450px;
 }
 
@@ -125,7 +126,7 @@ hr.task-header{
     width: 24px;
     height: 24px;
     align-self: center;
-    background-image: url("plusicon.png");
+    background-image: url("images/plusicon.png");
     background-size: cover;
     background-position: center;
     opacity: 40%;
@@ -137,7 +138,7 @@ hr.task-header{
     position: relative;
     display: none;
     width: 400px;
-    height: 180px;
+    height: 200px;
     background-color: #ffffff;
     border-radius: 10px;
     flex-direction: column;
@@ -149,6 +150,40 @@ hr.task-header{
 
 .new-task-container{
     position: relative;
+}
+
+.timer{
+    display: flex;
+    width: 200px;
+    left: 25px;
+    top: 35px;
+    position: relative;
+}
+
+.timer input{
+    color: #383838;
+    text-align: center;
+    width: 65px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    height:30px ;
+    border-width: 0;
+    border-radius: 4px;
+    transition: width 0.5s;
+}
+
+.desc-clock{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    background-image: url("images/timer.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+}
+.timer input::placeholder{
+    color: #bbbbbb;
+    text-align: center;
 }
 
 
@@ -212,7 +247,7 @@ li{
     font-size: 18px;
     margin-bottom: 10px;
     min-height: 60px;
-    padding: 22px 50px 22px 50px;
+    padding: 22px 100px 22px 50px;
     border-radius: 10px;
     background-color: #ffffff;
     border-left: 15px solid #ffffff;
@@ -232,14 +267,14 @@ li::before{
     width: 24px;
     height: 24px;
     left: 10px;
-    background-image: url("unchecked.png");
+    background-image: url("images/unchecked.png");
     background-size: cover;
     background-position: center;
 }
 
 li.checked{
     text-decoration: line-through;
-    color: #ababab;
+    color: #838383;
 
 }
 
@@ -249,10 +284,10 @@ li.dragging{
 
 
 li.checked::before{
-    background-image: url("checked.png");
+    background-image: url("images/checked.png");
 }
 
-li span{
+.close-span{
     color: #383838;
     display: flex;
     position: absolute;
@@ -267,6 +302,29 @@ li span{
     transition: background-color 0.1s;
 }
 
-li span:hover{
+.close-span:hover{
     background-color: rgba(61, 61, 61, 0.07);
+}
+
+.time-bar{
+    position: absolute;
+    right: 55px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: conic-gradient(#262626 360deg, #d7d7d7 360deg);
+    display: grid;
+    place-items: center;
+    transition: background 0.1s;
+}
+
+.time-bar::before{
+    content: '';
+    height: 80%;
+    width: 80%;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.time-bar:hover{
 }

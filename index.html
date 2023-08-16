@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>List</title>
     <link rel="stylesheet" href="main.css">
-    <link rel="icon" href="favicon.png">
+    <link rel="icon" href="images/favicon.png">
 </head>
 <body>
 <div class="header-container">
@@ -20,10 +20,14 @@
         <ul id="list-container">
 <!--            <li class="checked"> lorem ipsum </li>-->
 <!--            <li> lorem ipsum </li>-->
-<!--            <li class="dragging"> lorem ipsum </li>-->
+<!--            <li> lorem ipsum </li>-->
         </ul>
         <div class="task-description">
-        <input type="text" id="input-box" placeholder="What would you like to do?">
+            <input type="text" id="input-box" placeholder="What would you like to do?">
+            <div class="timer">
+                <span class="desc-clock"></span>
+                <input type="number" min="0" max="9999" onkeyup="enforceTime(this)" id="time-min" placeholder="min">
+            </div>
             <div class="desc-buttons">
                 <button class="cancel-button" onclick="taskCancel()">Cancel</button>
                 <button class="add-button" onclick="addTask()">Add</button>
@@ -38,6 +42,8 @@
 <div>
 
 </div>
+
+<audio id="sound-effect" src="ding.mp3"></audio>
 <script src="script.js"></script>
 </body>
 </html>

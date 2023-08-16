@@ -1,16 +1,21 @@
 const inputBox = document.getElementById("input-box");
+const timeBox = document.getElementById("time-min");
 const listContainer = document.getElementById("list-container");
 const newTask = document.getElementById('new-task-button')
+let soundEffect = document.getElementById("sound-effect");
 const taskDescription = document.querySelector('.task-description');
 let listItems = listContainer.querySelectorAll('li');
 const body = document.body;
 let taskEditing = false;
 let isDragging = false;
+let focusingTimeBox = false;
+
 
 
 function addTask() {
     if (inputBox.value === ''){
         console.log('Task not created, no text in input')
+        inputBox.focus();
     }
     else {
         taskDescription.style.display = 'none';
@@ -32,15 +37,27 @@ function addTask() {
             setTimeout(saveData, 0);
         });
         listContainer.appendChild(li);
-        let span = document.createElement('span');
-        span.innerHTML = '\u00d7';
-        li.appendChild(span);
+        let closeSpan = document.createElement('span');
+        closeSpan.innerHTML = '\u00d7';
+        if (timeBox.value){
+            let time = document.createElement('div');
+            let originalTime = document.createElement('div');
+            time.setAttribute("value",timeBox.value);
+            originalTime.setAttribute("value",timeBox.value);
+            originalTime.style.display  = 'none';
+            time.classList.add('time-bar');
+            time.appendChild(originalTime);
+            li.appendChild(time);
+            countdown(li.lastElementChild);
+        }
+        closeSpan.classList.add('close-span')
+        li.appendChild(closeSpan);
         inputBox.value = '';
+        timeBox.value = '';
         newTask.style.display = 'flex';
         taskDescription.classList.remove('spawn');
         taskEditing = false;
         saveData();
-        console.log('Task created');
 
     }
     listItems = listContainer.children;
@@ -48,8 +65,30 @@ function addTask() {
 
 }
 
+function countdown(inputDiv){
+    let time = inputDiv.getAttribute('value');
+    let initialTime = inputDiv.firstElementChild.getAttribute('value');
+        const timer = setInterval(() => {
+            if (time > 0 && document.querySelector('.time-bar')) {
+                time = time*6000 -30;
+                time = time.toFixed(2)
+                inputDiv.setAttribute('value', time/6000);
+                inputDiv.style.background = `conic-gradient(#262626 ${(time/6000)/initialTime*360}deg, #d7d7d7 ${(time/6000)/initialTime*360}deg)`
+                time = time/6000;
+                console.log(time)
+            } else {
+                console.log('timer ended')
+                if (document.querySelector('.time-bar')){
+                    soundEffect.play();
+                }
+                clearInterval(timer);
+            }
+        }, 300);
+}
+
 function taskCancel() {
     if (inputBox.value === ''){
+
     }
     else {
         inputBox.value = '';
@@ -57,6 +96,7 @@ function taskCancel() {
         console.log('Task creation cancelled')
 
     }
+    timeBox.value = '';
     newTask.style.display = 'flex';
     taskDescription.style.display = 'none';
     taskDescription.classList.remove('spawn')
@@ -64,8 +104,14 @@ function taskCancel() {
 }
 
 body.addEventListener("keydown", function (e){
-    if (e.key === 'Enter' && taskEditing){
+    if (e.key === 'Enter' && taskEditing &&focusingTimeBox){
+        focusingTimeBox = false;
         addTask();
+    }
+    else if(e.key === 'Enter' && taskEditing && !focusingTimeBox){
+        focusingTimeBox = true;
+        timeBox.focus()
+
     }
     else if(e.key === 'Enter' && !taskEditing){
         newTaskButton();
@@ -130,6 +176,16 @@ function draggingFunction(e) {
     }
 }
 
+function enforceTime(e) {
+    if (e.value < 0){
+        e.value = 0;
+    }
+
+    else if(e.value > 9999){
+        e.value = 9999;
+    }
+
+}
 document.addEventListener("DOMContentLoaded", function() {
     showTask();
     listItems = listContainer.querySelectorAll('li');
@@ -155,5 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     listContainer.addEventListener("dragover", draggingFunction);
     listContainer.addEventListener("dragenter", e => e.preventDefault());
+    // listContainer.addEventListener("touchmove", draggingFunction);
+    // listContainer.addEventListener("dragenter", e => e.preventDefault());
 });
 
