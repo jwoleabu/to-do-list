@@ -5,6 +5,7 @@ const newTask = document.getElementById('new-task-button')
 let soundEffect = document.getElementById("sound-effect");
 const taskDescription = document.querySelector('.task-description');
 let listItems = listContainer.querySelectorAll('li');
+let saveTimer;
 const body = document.body;
 let taskEditing = false;
 let isDragging = false;
@@ -76,14 +77,25 @@ function countdown(inputDiv){
                 inputDiv.style.background = `conic-gradient(#262626 ${(time/6000)/initialTime*360}deg, #d7d7d7 ${(time/6000)/initialTime*360}deg)`
                 time = time/6000;
                 console.log(time)
+
             } else {
                 console.log('timer ended')
                 if (document.querySelector('.time-bar')){
                     soundEffect.play();
                 }
+                clearInterval(saveTimer);
+                saveTimer = false;
                 clearInterval(timer);
+                saveData()
             }
         }, 300);
+
+        if (!saveTimer){
+            saveTimer = setInterval(() => {
+                console.log('saved time data YES')
+                saveData();
+            }, 6000)
+        }
 }
 
 function taskCancel() {
@@ -207,11 +219,16 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('dragging ended')
             setTimeout(saveData,0);
         })
+
+        if (item.firstElementChild && item.firstElementChild.getAttribute('value') > 0){
+            countdown(item.firstElementChild)
+            console.log(item.firstElementChild)
+        }
     })
 
     listContainer.addEventListener("dragover", draggingFunction);
     listContainer.addEventListener("dragenter", e => e.preventDefault());
-    // listContainer.addEventListener("touchmove", draggingFunction);
-    // listContainer.addEventListener("dragenter", e => e.preventDefault());
+
+
 });
 
