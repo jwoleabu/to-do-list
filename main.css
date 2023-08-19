@@ -313,7 +313,8 @@ li.checked::before{
     height: 25px;
     border-radius: 50%;
     background: conic-gradient(#262626 360deg, #d7d7d7 360deg);
-    display: grid;
+    display: flex;
+    justify-content: center;
     place-items: center;
     transition: background 0.1s;
 }
