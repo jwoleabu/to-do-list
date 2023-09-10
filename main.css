@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Tauri&family=Varela+Round&display=swap');
 
+:root{
+    --tasksize: 500px;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +16,7 @@ body{
 }
 
 .header-container{
-    width: 500px;
+    width: var(--tasksize);
     margin-right: auto;
     margin-left: auto;
     display: flex;
@@ -55,7 +59,7 @@ hr.task-header{
     background-color: rgba(255, 255, 255, 0.7);
     height: 2px;
     border: none;
-    width: 500px;
+    width: var(--tasksize);
 }
 
 
@@ -69,7 +73,7 @@ hr.task-header{
 
 #input-box{
     color: #383838;
-    width: 350px;
+    width: calc(var(--tasksize) - var(--tasksize)*10/100);
     background-color: white;
     font-size: 22px;
     top: 20px;
@@ -86,11 +90,11 @@ hr.task-header{
 }
 
 .task-description.spawn{
-    width: 500px;
+    width: var(--tasksize);
 }
 
 .task-description.spawn #input-box{
-    width: 450px;
+    width: calc(var(--tasksize) - var(--tasksize)*10/100);
 }
 
 ::placeholder{
@@ -102,7 +106,7 @@ hr.task-header{
 .new-task{
 
     display: flex;
-    width: 500px;
+    width: var(--tasksize);
     height: 60px;
     border-radius: 10px;
     color: rgba(255, 255, 255, 0.3);
@@ -137,7 +141,7 @@ hr.task-header{
 .task-description{
     position: relative;
     display: none;
-    width: 400px;
+    width: calc(var(--tasksize)- 100px);
     height: 200px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -176,7 +180,7 @@ hr.task-header{
     width: 30px;
     height: 30px;
     display: flex;
-    background-image: url("images/timer.png");
+    background-image: url("images/stopwatch.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 24px 24px;
@@ -235,7 +239,7 @@ ul, li{
     font-size: 16px;
     user-select: none;
     cursor: pointer;
-    width: 500px;
+    width: var(--tasksize);
 
 }
 
@@ -328,4 +332,11 @@ li.checked::before{
 }
 
 .time-bar:hover{
+}
+
+@media  screen and (max-width: 600px){
+    :root{
+        --tasksize: 300px;
+
+    }
 }
