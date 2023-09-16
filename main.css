@@ -73,7 +73,7 @@ hr.task-header{
 
 #input-box{
     color: #383838;
-    width: calc(var(--tasksize) - var(--tasksize)*10/100);
+    width: 150px;
     background-color: white;
     font-size: 22px;
     top: 20px;
@@ -141,7 +141,7 @@ hr.task-header{
 .task-description{
     position: relative;
     display: none;
-    width: calc(var(--tasksize)- 100px);
+    width: 200px;
     height: 200px;
     background-color: #ffffff;
     border-radius: 10px;
