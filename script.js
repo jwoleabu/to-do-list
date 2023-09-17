@@ -232,3 +232,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+// fix mobile touch issue
