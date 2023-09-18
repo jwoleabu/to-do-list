@@ -4,6 +4,7 @@ const listContainer = document.getElementById("list-container");
 const newTask = document.getElementById('new-task-button')
 let soundEffect = document.getElementById("sound-effect");
 const taskDescription = document.querySelector('.task-description');
+const toDoApp = document.querySelector(".todoApp")
 let listItems = listContainer.querySelectorAll('li');
 let saveTimer;
 const body = document.body;
@@ -231,5 +232,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 });
+
+function menuClick() {
+    toDoApp.style.display = 'none'
+
+}
 
 // fix mobile touch issue
